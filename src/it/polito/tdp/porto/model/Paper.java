@@ -1,5 +1,8 @@
 package it.polito.tdp.porto.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Paper {
 
 	private int eprintid;
@@ -8,6 +11,7 @@ public class Paper {
 	private String publication;
 	private String type;
 	private String types;
+	private List<Author> autori;
 
 	public Paper(int eprintid, String title, String issn, String publication, String type, String types) {
 		this.eprintid = eprintid;
@@ -16,6 +20,7 @@ public class Paper {
 		this.publication = publication;
 		this.type = type;
 		this.types = types;
+		autori = new ArrayList<Author>();
 	}
 
 	public int getEprintid() {
@@ -68,8 +73,44 @@ public class Paper {
 
 	@Override
 	public String toString() {
-		return "Paper [eprintid=" + eprintid + ", title=" + title + ", issn=" + issn + ", publication=" + publication
-				+ ", type=" + type + ", types=" + types + "]";
+		return this.eprintid+" "+this.title;
 	}
+	
+	public void addAutore(Author a){
+		autori.add(a);
+	}
+	
+	public List<Author> getAutori(){
+		return autori;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + eprintid;
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Paper other = (Paper) obj;
+		if (eprintid != other.eprintid)
+			return false;
+		return true;
+	}
+	
 
 }
